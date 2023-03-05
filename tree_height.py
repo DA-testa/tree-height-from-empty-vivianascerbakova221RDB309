@@ -45,23 +45,23 @@ def main():
         if 'a' in file_name:
             print("File is not allowed to contain letter 'a'")
             return
-        else:
-            try:
-                with open(folder) as file:
-                    n = int(file.readline())
-                    parents = list(map(int, file.readline().split()))
-            except FileNotFoundError:
+        try:
+            with open(file_name, 'r', encoding='utf-8') as file:
+                n = int(file.readline())
+                parents = list(map(int, file.readline().split()))
+        except FileNotFoundError:
                 print("Error: File not found")
                 return
             except ValueError:
                 print("Error: Invalid input format")
                 return
-    else:
+        else:
+            print("Enter 'I' or 'F':")
+            return 
     # input number of elements
     # input values in one variable, separate with space, split these values in an array
+       
     # call the function and output it's result
-        print("Enter 'I' or 'F':")
-        return
     print(compute_height(n, parents))
     #pass
 
