@@ -56,9 +56,12 @@ def main():
             except ValueError:
                 print("Error: Invalid input format")
                 return
+    else:
     # input number of elements
     # input values in one variable, separate with space, split these values in an array
     # call the function and output it's result
+        print("Enter 'I' or 'F':")
+        return
     print(compute_height(n, parents))
     #pass
 
