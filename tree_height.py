@@ -45,6 +45,7 @@ def main():
         if 'a' in file_name:
             print("File is not allowed to contain letter 'a'")
             return
+        else:
             try:
                 with open(folder) as file:
                     n = int(file.readline())
