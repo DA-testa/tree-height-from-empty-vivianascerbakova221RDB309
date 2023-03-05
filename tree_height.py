@@ -1,4 +1,5 @@
 # python3
+# Viviāna Ščerbakova 3.grupa 221RDB309
 
 import sys
 import threading
