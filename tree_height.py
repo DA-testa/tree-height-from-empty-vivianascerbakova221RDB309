@@ -46,7 +46,7 @@ def main():
             print("File is not allowed to contain letter 'a'")
             return
         try:
-            with open(file_name, 'r', encoding='utf-8') as file:
+            with open(folder) as file:
                 n = int(file.readline())
                 parents = list(map(int, file.readline().split()))
         except FileNotFoundError:
