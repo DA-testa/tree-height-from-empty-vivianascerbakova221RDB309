@@ -34,7 +34,7 @@ def main():
     text = input("Enter 'I' for input or 'F' for file")
     if "I" in text:
         n = int(input())
-        parents = list(map(int, input().split))
+        parents = list(map(int, input().split()))
         # account for github input inprecision
     elif "F" in text:
         path = './test/'
