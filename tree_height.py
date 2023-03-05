@@ -28,29 +28,33 @@ def compute_height(n, parents):
 
 def main():
     """
-    Reads input from a file, calculates the height of a binary tree,
-    prints the result to a user.
+    Lasa ievadi no datnes, izrēķina bināra koka lielumu, izvada rezultātu.
     """
 
-    # implement input form keyboard and from files    
-    # account for github input inprecision
-    path = './test/'
-    file_name = input("Enter file name: ")
-    folder = path + file_name
+    # implement input form keyboard and from files
+    text = input("Enter 'I' for input or 'F' for file")
+    if "I" in text:
+        n = int(input())
+        parents = list(map(int, input().split))
+        # account for github input inprecision
+    elif "F" in text:
+        path = './test/'
+        file_name = input("Enter file name: ")
+        folder = path + file_name
     # let user input file name to use, don't allow file names with letter a
-    if 'a' in file_name:
-        print("File is not allowed to contain letter 'a'")
-        return
-    try:
-        with open(folder) as file:
-            n = int(file.readline())
-            parents = list(map(int, file.readline().split()))
-    except FileNotFoundError:
-        print("Error: File not found")
-        return
-    except ValueError:
-        print("Error: Invalid input format")
-        return
+        if 'a' in file_name:
+            print("File is not allowed to contain letter 'a'")
+            return
+            try:
+                with open(folder) as file:
+                    n = int(file.readline())
+                    parents = list(map(int, file.readline().split()))
+            except FileNotFoundError:
+                print("Error: File not found")
+                return
+            except ValueError:
+                print("Error: Invalid input format")
+                return
     # input number of elements
     # input values in one variable, separate with space, split these values in an array
     # call the function and output it's result
