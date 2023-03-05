@@ -4,7 +4,6 @@ import sys
 import threading
 #import numpy
 
-
 def compute_height(n, parents):
     # Write this function
     tree = {}
@@ -46,18 +45,18 @@ def main():
             print("File is not allowed to contain letter 'a'")
             return
         try:
-            with open(folder) as file:
+            with open(folder, 'r', encoding='utf-8') as file:
                 n = int(file.readline())
                 parents = list(map(int, file.readline().split()))
         except FileNotFoundError:
-                print("Error: File not found")
-                return
-            except ValueError:
-                print("Error: Invalid input format")
-                return
-        else:
-            print("Enter 'I' or 'F':")
-            return 
+            print("Error: File not found")
+            return
+        except ValueError:
+            print("Error: Invalid input format")
+            return
+    else:
+        print("Enter 'I' or 'F':")
+        return 
     # input number of elements
     # input values in one variable, separate with space, split these values in an array
        
