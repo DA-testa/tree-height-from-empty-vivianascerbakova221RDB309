@@ -1,74 +1,68 @@
 # python3
-# Viviāna Ščerbakova 3.grupa 221RDB309
+# TODO: Create heap and heap sort
+# try to achieve  O(n) and not O(n2)
 
-import sys
-import threading
-#import numpy
+def build_heap(data):
+    swaps = []
+    n = len(data)
 
-def compute_height(n, parents):
-    # Write this function
-    tree = {}
-    for i in range(n):
-        tree[i] = []
-    for i in range(n):
-        if parents[i] == -1:
-            root = i
-        else:
-            tree[parents[i]].append(i)
-    #max_height = 0
+def scan(index):
+    min_index = index
+    left_index = 2 * index + 1
+    right_index = 2 * index + 2
 
-    # Your code here
-    def height(node):
-        if not tree[node]:
-            return 1
-        else:
-            return 1 + max(height(child) for child in tree[node])
-    return height(root)
+    if left_index < n and data[left_index] < data[min_index]:
+        min_index = left_index
+    
+    if right_index < n and data[right_index] < data[min_index]:
+        min_index = right_index
+
+    if index != min_index:
+        swaps.append((index, min_index))
+
+        data[index], data[min_index] = data[min_index]
+        scan(min_index)
+
+for index in range(size // 2,-1,-1):
+    scan(index)
+    return swaps
 
 
 def main():
-    """
-    Lasa ievadi no datnes, izrēķina bināra koka lielumu, izvada rezultātu.
-    """
-
-    # implement input form keyboard and from files
+    
+    # TODO : add input and corresponding checks
+    # add another input for I or F 
+    # first two tests are from keyboard, third test is from a file
+    
     text = input("Enter 'I' for input or 'F' for file")
-    if "I" in text:
-        n = int(input())
-        parents = list(map(int, input().split()))
-        # account for github input inprecision
-    elif "F" in text:
-        path = './test/'
+    if 'F' in text:
         file_name = input("Enter file name: ")
-        folder = path + file_name
-    # let user input file name to use, don't allow file names with letter a
-        if 'a' in file_name:
-            print("File is not allowed to contain letter 'a'")
-            return
-        try:
-            with open(folder, 'r', encoding='utf-8') as file:
+        if 'a' not in file_name:
+            path = './tests/' + file_name
+            with open(path, 'r', encoding='utf-8') as file:
                 n = int(file.readline())
-                parents = list(map(int, file.readline().split()))
-        except FileNotFoundError:
-            print("Error: File not found")
-            return
-        except ValueError:
-            print("Error: Invalid input format")
-            return
-    else:
-        print("Enter 'I' or 'F':")
-        return 
-    # input number of elements
-    # input values in one variable, separate with space, split these values in an array
-       
-    # call the function and output it's result
-    print(compute_height(n, parents))
-    #pass
+                data = list(map(int, file.readline().split()))
 
-# In Python, the default limit on recursion depth is rather low,
-# so raise it here for this problem. Note that to take advantage
-# of bigger stack, we have to launch the computation in a new thread.
-sys.setrecursionlimit(10**7)  # max depth of recursion
-threading.stack_size(2**27)   # new thread will get stack of such size
-threading.Thread(target=main).start()
-# print(numpy.array([1,2,3]))
+    # input from keyboard    
+    if 'I' in text:
+        n = int(input())
+        data = list(map(int, input().split()))
+
+    # checks if length of data is the same as the said length
+    assert len(data) == n
+       
+    # calls function to assess the data 
+    # and give back all swaps
+    swaps = scan(data))
+
+    # TODO: output how many swaps were made, 
+    # this number should be less than 4n (less than 4*len(data))
+    assert len(swaps) <= n*4
+    
+    print(len(swaps))
+    for i, j in swaps:
+            print(i, j)
+    # outputs all swaps
+
+if __name__ == "__main__":
+    main()
